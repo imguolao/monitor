@@ -1,12 +1,15 @@
 {
   "welcome": "Welcome you!",
   "setting": {
+    "sidebar_label": "Setting",
+    "panel_title": "Setting",
     "language": "Language",
     "language_placeholder": "Select a language",
     "theme": "Theme",
     "theme_placeholder": "Select a theme"
   },
   "brightness": {
-    "label": "Brightness"
+    "sidebar_label": "Brightness",
+    "panel_title": "Brightness"
   }
 }

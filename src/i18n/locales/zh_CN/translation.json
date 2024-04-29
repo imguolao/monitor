@@ -1,12 +1,16 @@
 {
   "welcome": "欢迎你！",
   "setting": {
+    "sidebar_label": "设置",
+    "panel_title": "设置",
     "language": "语言",
     "language_placeholder": "选择语言",
     "theme": "主题",
     "theme_placeholder": "选择主题"
   },
   "brightness": {
-    "label": "亮度"
+    "sidebar_label": "亮度",
+    "label": "亮度",
+    "panel_title": "亮度"
   }
 }
