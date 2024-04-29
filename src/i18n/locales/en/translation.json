@@ -1,9 +1,12 @@
 {
   "welcome": "Welcome you!",
   "setting": {
-    "language": "language",
+    "language": "Language",
     "language_placeholder": "Select a language",
-    "theme": "theme",
+    "theme": "Theme",
     "theme_placeholder": "Select a theme"
+  },
+  "brightness": {
+    "label": "Brightness"
   }
 }
