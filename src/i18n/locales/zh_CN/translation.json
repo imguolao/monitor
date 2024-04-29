@@ -1,7 +1,9 @@
 {
   "welcome": "欢迎你！",
-  "language": "语言",
   "setting": {
-    "language": "语言"
+    "language": "语言",
+    "language_placeholder": "选择语言",
+    "theme": "主题",
+    "theme_placeholder": "选择主题"
   }
 }

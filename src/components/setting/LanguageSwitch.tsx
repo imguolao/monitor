@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { Select, SelectItem } from "@nextui-org/react";
 import { LANGUAGE } from "@/i18n/locales";
-import { getLanguage } from "@/utils/i18n";
+import { getLanguage, STORAGE_LANGUAGE_KEY } from "@/utils/i18n";
 import { storage } from "@/utils/storage";
 
 const lngList = Object.keys(LANGUAGE);
@@ -13,7 +13,7 @@ function LanguageSwitch() {
   const handleChange = (e: any) => {
     const lng = e.target.value;
     setCurrLng(lng);
-    storage.setItem("language", lng);
+    storage.setItem(STORAGE_LANGUAGE_KEY, lng);
     i18n.changeLanguage(lng);
   };
 
@@ -22,8 +22,8 @@ function LanguageSwitch() {
       selectedKeys={[currLng]}
       className="w-40"
       label={t("setting.language")}
-      aria-label="Language"
-      placeholder="Select a language"
+      aria-label={t("setting.language")}
+      placeholder={t("setting.language_placeholder")}
       onChange={handleChange}>
       {lngList.map(lng => (
           <SelectItem key={lng} value={lng}>{lng}</SelectItem>

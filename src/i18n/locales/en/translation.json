@@ -1,7 +1,9 @@
 {
   "welcome": "Welcome you!",
-  "language": "language",
   "setting": {
-    "language": "language"
+    "language": "language",
+    "language_placeholder": "Select a language",
+    "theme": "theme",
+    "theme_placeholder": "Select a theme"
   }
 }
