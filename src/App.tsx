@@ -1,13 +1,11 @@
-import { useTranslation } from 'react-i18next';
-import { NextUIProvider, Button } from "@nextui-org/react";
+import { NextUIProvider } from "@nextui-org/react";
+import Home from "@/views/Home";
 
 function App() {
-  const { t, i18n } = useTranslation();
-  i18n.changeLanguage('zh_CN');
   return (
-    <NextUIProvider>
-      <main className="dark text-foreground bg-background">
-        <Button>{t("welcome")}</Button>
+    <NextUIProvider className="h-full">
+      <main className="dark text-foreground bg-background h-full">
+        <Home />
       </main>
     </NextUIProvider>
   );
