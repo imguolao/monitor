@@ -1,20 +1,40 @@
 import { useTranslation } from 'react-i18next';
 import { Slider } from "@nextui-org/react";
 import Card from "@/components/card/Card";
+import Field from "@/components/field/Field";
+import MonitorIcon from "@/components/icon/Monitor";
+import { useState } from "react";
+
+function MonitorLabel({ label }: { label: string }) {
+  return (
+    <div className="flex items-center">
+      <MonitorIcon className="text-[24px] mr-[6px]" />
+      <span className="text-[18px]">{label}</span>
+    </div>
+  );
+}
 
 function BrightnessPanel() {
   const { t } = useTranslation();
+  // mock value
+  const [value, setValue] = useState<number | number[]>(50);
   return (
     <Card title={t("brightness.panel_title")}>
-      <Slider   
-        size="lg"
-        step={0.01} 
-        maxValue={1} 
-        minValue={0} 
-        aria-label="Dell Monitor"
-        defaultValue={0.6}
-        className="max-w-md" 
-      />
+      <Field label={(<MonitorLabel label="Dell U2417H" />)}>
+        <div className="flex items-center">
+          <Slider   
+            size="lg"
+            step={1}
+            maxValue={100}
+            minValue={0}
+            aria-label="monitor brightness"
+            value={value}
+            onChange={setValue}
+            className="w-[240px]"
+          />
+          <span className="inline-block ml-[12px] text-[18px] font-medium">{value}</span>
+        </div>
+      </Field>
     </Card>
   );
 }

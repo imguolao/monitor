@@ -9,4 +9,3 @@ export const SidebarContext = createContext<SidebarContextValue>({
   selectedKey: '',
   toggleSelectedKey: () => {},
 });
-

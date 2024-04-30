@@ -20,8 +20,7 @@ function LanguageSwitch() {
   return (
     <Select
       selectedKeys={[currLng]}
-      className="w-40"
-      label={t("setting.language")}
+      className="w-[160px]"
       aria-label={t("setting.language")}
       placeholder={t("setting.language_placeholder")}
       onChange={handleChange}>

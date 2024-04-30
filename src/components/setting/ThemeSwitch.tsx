@@ -30,8 +30,7 @@ function ThemeSwitch() {
   return (
     <Select
       selectedKeys={[themeWithAuto]}
-      className="w-40"
-      label={t("setting.theme")}
+      className="w-[160px]"
       aria-label={t("setting.theme")}
       placeholder={t("setting.theme_placeholder")}
       onChange={handleChange}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import Sidebar, { type SidebarItem } from "./Sidebar";
 import BrightnessIcon from "@/components/icon/Brightness";
@@ -23,6 +23,7 @@ function Panel(props: { panelKey: string }) {
 function Home() {
   const [sidebarKey, setSidebarKey] = useState<string>("brightness");
   const { t } = useTranslation();
+  const currPanel = useMemo(() => (<Panel panelKey={sidebarKey} />), [sidebarKey]);
   const sideList: SidebarItem[] = [
     {
       key: "brightness",
@@ -46,7 +47,7 @@ function Home() {
           <Sidebar list={sideList} />
         </div>
         <section className="flex-1 px-[20px]">
-          <Panel panelKey={sidebarKey} />
+          {currPanel}
         </section>
       </div>
     </SidebarContext.Provider>
