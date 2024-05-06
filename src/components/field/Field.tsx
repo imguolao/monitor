@@ -4,7 +4,7 @@ function Field(props: PropsWithChildren<{ label: string | ReactNode }> & Compone
   const { label, children, ...rest } = props ?? {};
   return (
     <div {...rest}>
-      <div className="pb-[4px]">
+      <div className="pb-[4px] select-none">
         {label}
       </div>
       {children}

@@ -8,8 +8,8 @@ import { useState } from "react";
 function MonitorLabel({ label }: { label: string }) {
   return (
     <div className="flex items-center">
-      <MonitorIcon className="text-[24px] mr-[6px]" />
-      <span className="text-[18px]">{label}</span>
+      <MonitorIcon className="text-[20px] mr-[6px]" />
+      <span className="text-[16px]">{label}</span>
     </div>
   );
 }
@@ -30,7 +30,7 @@ function BrightnessPanel() {
             aria-label="monitor brightness"
             value={value}
             onChange={setValue}
-            className="w-[240px]"
+            className="max-w-[260px]"
           />
           <span className="inline-block ml-[12px] text-[18px] font-medium">{value}</span>
         </div>

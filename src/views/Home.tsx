@@ -28,12 +28,12 @@ function Home() {
     {
       key: "brightness",
       label: t("brightness.sidebar_label"),
-      icon: (<BrightnessIcon className="text-[24px]" />),
+      icon: (<BrightnessIcon />),
     },
     {
       key: "setting",
       label: t("setting.sidebar_label"),
-      icon: (<SettingIcon className="text-[24px]" />),
+      icon: (<SettingIcon />),
     }
   ];
 
@@ -42,10 +42,8 @@ function Home() {
       selectedKey: sidebarKey,
       toggleSelectedKey: setSidebarKey,
     }}>
-      <div className="flex h-full dark:bg-default-100 bg-default-100">
-        <div className="basis-[320px] h-full">
-          <Sidebar list={sideList} />
-        </div>
+      <div className="flex h-full dark:bg-default-50 bg-default-50">
+        <Sidebar list={sideList} />
         <section className="flex-1 px-[20px]">
           {currPanel}
         </section>
