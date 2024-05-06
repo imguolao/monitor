@@ -32,7 +32,7 @@ function BrightnessPanel() {
             onChange={setValue}
             className="max-w-[260px]"
           />
-          <span className="inline-block ml-[12px] text-[18px] font-medium">{value}</span>
+          <span className="inline-block ml-[12px] text-[18px] font-medium select-none">{value}</span>
         </div>
       </Field>
     </Card>
