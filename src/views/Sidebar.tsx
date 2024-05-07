@@ -29,19 +29,20 @@ function SidebarItem(props: PropsWithoutRef<SidebarItemProps> & ComponentProps<"
     <div
       {...rest}
       className={`
-        h-[40px] box-border relative py-[8px] [&:not(:last-child)]:mb-[8px]
-        hover:dark:bg-default-200 hover:bg-default-200
-        ${selected ? "dark:bg-default-200 bg-default-200" : ""}
+        h-[40px] box-border relative py-[8px]
+        [&:not(:last-child)]:mb-[8px] rounded-[8px]
+        hover:dark:bg-default-100 hover:bg-default-200
+        ${selected ? "dark:bg-default-100 bg-default-200" : ""}
       `}>
       {selected &&
         <div className="
-          h-[24px] w-[0px] border-l-[4px] border-solid absolute
-          dark:border-primary-500 border-primary-500
+          h-[24px] w-[0px] border-l-[4px] border-solid 
+          absolute border-primary-500
         "></div>
       }
-      <div className="h-full mx-[12px] flex items-center">
-        <i className="text-[24px] mr-[12px]" title={label}>{icon}</i>
-        <span className="font-medium select-none">
+      <div className="h-full mx-[10px] flex items-center">
+        <i className="text-[24px] mr-[10px]" title={label}>{icon}</i>
+        <span className="select-none">
           {label}
         </span>
       </div>
@@ -68,9 +69,9 @@ function Sidebar(props: { list: SidebarListItem[] }) {
 
   return (
     <div className={`
-        ${visiable ? "w-[260px]" : "w-[48px] overflow-hidden"}
+        ${visiable ? "w-[260px]" : "w-[64px] overflow-hidden"}
         ease-in-out duration-200 transition-width
-        h-full grow-0 shrink-0 dark:bg-default-100 bg-default-100
+        h-full grow-0 shrink-0 box-border pl-[20px]
       `}>
       {props?.list?.map(({ key, label, icon }) => (
         <SidebarItem

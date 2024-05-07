@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeContext } from "@/contexts/theme";
 import { type ThemeExcludeAuto, getTheme } from "@/utils/theme";
@@ -6,16 +6,19 @@ import Home from "@/views/Home";
 
 function App() {
   const [theme, setTheme] = useState<ThemeExcludeAuto>(getTheme());
-  const themeVariants = {
-    "dark": "dark",
-    "light": "light",
-  };
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme: setTheme }}>
       <NextUIProvider className="h-full">
-        <main className={`${themeVariants[theme]} text-foreground bg-background h-full`}>
-          <Home />
-        </main>
+        <Home className={`text-foreground bg-background h-full`} />
       </NextUIProvider>
     </ThemeContext.Provider>
   );

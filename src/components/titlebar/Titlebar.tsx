@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { type UnlistenFn } from "@tauri-apps/api/event";
 import { getCurrent } from "@tauri-apps/api/window";
 import MinimizeIcon from "@/components/icon/Minimize";
 import MaximizeIcon from "@/components/icon/Maximize";
@@ -7,7 +8,8 @@ import UnMaximizeIcon from "@/components/icon/Restore";
 
 const ICON_DEFAULT_CLASSES = `
   inline-flex justify-center items-center select-none 
-  text-[18px] w-[46px] hover:dark:bg-default-50 hover:bg-default-100
+  hover:dark:bg-default-50 hover:bg-default-200
+  text-default-500 hover:text-foreground text-[18px] w-[46px]
 `;
 
 function Titlebar() {
@@ -19,32 +21,26 @@ function Titlebar() {
 
   useEffect(() => {
       const appWindow = getCurrent();
-      const setMaxnizedState = async () => {
-        const ret = await appWindow.isMaximized();
-        setIsMaximized(ret);
-      }
+      const setMaxnizedState = async () => setIsMaximized(await appWindow.isMaximized());
 
       const minimize = () => appWindow.minimize();
       miniIconRef.current?.addEventListener("click", minimize);
 
-      const maxmize = () => {
-        appWindow.maximize();
-        setIsMaximized(true);
-      };
+      const maxmize = () => appWindow.maximize();;
       maxIconRef.current?.addEventListener("click", maxmize);
 
       const close = () => appWindow.close();
       closeIconRef.current?.addEventListener("click", close);
 
-      const unmaximize = () => {
-        appWindow.unmaximize();
-        setIsMaximized(false);
-      };
+      const unmaximize = () => appWindow.unmaximize();;
       unMaxIconRef?.current?.addEventListener("click", unmaximize);
 
+      let unlisten: UnlistenFn;
+      (async () => unlisten = await appWindow.onResized(() => setMaxnizedState()))();
       setMaxnizedState();
 
       return () => {
+        unlisten?.();
         miniIconRef.current?.removeEventListener("click", minimize);
         maxIconRef.current?.removeEventListener("click", maxmize);
         unMaxIconRef?.current?.removeEventListener("click", unmaximize);
@@ -57,10 +53,11 @@ function Titlebar() {
       data-tauri-drag-region
       className="
         h-[32px] flex justify-between select-none 
-        fixed top-0 left-0 right-0 
-        dark:bg-default-100 bg-default-100
+        fixed top-0 left-0 right-0
       ">
-      <h1 className="select-none pointer-events-none">Monitor</h1>
+      <h1 className="select-none pointer-events-none ml-[20px] inline-flex items-center">
+        Monitor
+      </h1>
       <div className="flex">
         <div
           ref={miniIconRef}
@@ -82,6 +79,7 @@ function Titlebar() {
           className="
             inline-flex justify-center items-center select-none
             text-[18px] w-[46px] hover:bg-[#d10f20]
+            text-default-500 hover:text-content1 hover:dark:text-foreground
           ">
           <CloseIcon />
         </div>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ComponentProps } from "react";
 import { useTranslation } from 'react-i18next';
 import Sidebar, { type SidebarListItem } from "./Sidebar";
 import BrightnessIcon from "@/components/icon/Brightness";
@@ -21,7 +21,7 @@ function Panel(props: { panelKey: string }) {
   }
 }
 
-function Home() {
+function Home(props: ComponentProps<"div">) {
   const [sidebarKey, setSidebarKey] = useState<string>("brightness");
   const { t } = useTranslation();
   const currPanel = useMemo(() => (<Panel panelKey={sidebarKey} />), [sidebarKey]);
@@ -39,15 +39,15 @@ function Home() {
   ];
 
   return (
-    <div className="h-full flex flex-col">
+    <div {...props} className="h-full flex flex-col bg-default-50 dark:bg-background">
       <Titlebar />
       <SidebarContext.Provider value={{
         selectedKey: sidebarKey,
         toggleSelectedKey: setSidebarKey,
       }}>
-        <div className="mt-[32px] flex flex-1 dark:bg-default-50 bg-default-50">
+        <div className="mt-[42px] flex flex-1 overflow-hidden">
           <Sidebar list={sideList} />
-          <section className="flex-1 px-[20px]">
+          <section className="flex-1 px-[20px] overflow-auto">
             {currPanel}
           </section>
         </div>

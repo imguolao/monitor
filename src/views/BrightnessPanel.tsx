@@ -30,7 +30,7 @@ function BrightnessPanel() {
             aria-label="monitor brightness"
             value={value}
             onChange={setValue}
-            className="max-w-[260px]"
+            className="max-w-[260px] min-w-[160px]"
           />
           <span className="inline-block ml-[12px] text-[18px] font-medium select-none">{value}</span>
         </div>
