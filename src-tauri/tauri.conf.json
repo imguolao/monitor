@@ -1,7 +1,7 @@
 {
   "productName": "monitor",
   "version": "0.0.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "gmq.gromo.apps.monitor",
   "build": {
     "beforeDevCommand": "pnpm dev",
     "devUrl": "http://localhost:1420",
