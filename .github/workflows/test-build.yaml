@@ -1,0 +1,42 @@
+name: Test Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-tauri:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [windows-latest]
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9.0.6
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: install Rust nightly
+        uses: dtolnay/rust-toolchain@nightly
+
+      - name: install dependencies
+        run: |
+          # No additional dependencies needed for Windows
+
+      - name: install frontend dependencies
+        run: pnpm install
+
+      - name: Build Tauri App
+        uses: tauri-apps/tauri-action@dev
+        id: tauri-action
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          releaseId: test-release
