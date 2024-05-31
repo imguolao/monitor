@@ -1,6 +1,6 @@
 {
   "productName": "monitor",
-  "version": "0.0.0",
+  "version": "0.0.0-beta",
   "identifier": "gmq.gromo.apps.monitor",
   "build": {
     "beforeDevCommand": "pnpm dev",
