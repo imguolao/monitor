@@ -31,7 +31,8 @@ impl WmiMonitorID {
     }
 
     pub fn get_all_monitors() -> Result<Vec<WmiMonitorID>> {
-        let com_con = COMLibrary::new()
+        // TODO: should fix the error(HRESULT Call failed with: 0x80010106)
+        let com_con = COMLibrary::without_security()
             .context("Failed to initialize COM library")?;
     
         let wmi_con = WMIConnection::with_namespace_path("root\\WMI", com_con.into())
@@ -47,5 +48,3 @@ impl WmiMonitorID {
         Ok(WmiMonitorID::get_all_monitors()?.into_iter())
     }
 }
-
-

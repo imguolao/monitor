@@ -23,6 +23,11 @@ impl DisplayMonitor {
         wide_str_from_slice_truncated(&self.deviceInfo.DeviceID).to_string_lossy()
     }
 
+    pub fn name(&self) -> String {
+        let id = self.id();
+        id.split("#").collect::<Vec<_>>()[1].to_string()
+    }
+
     pub fn key(&self) -> String {
         let id = self.id();
         id.split("#").collect::<Vec<_>>()[2].to_string()

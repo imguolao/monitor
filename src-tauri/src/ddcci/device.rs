@@ -12,7 +12,6 @@ use windows::{
 };
 use std::mem;
 use widestring::WideCStr;
-use crate::utils::wide_str_from_slice_truncated;
 
 pub struct Device {
     pub info: DISPLAY_DEVICEW,
@@ -25,10 +24,6 @@ impl Device {
 
     pub fn win32_name(&self) -> Option<&WideCStr> {
         WideCStr::from_slice_truncate(&self.info.DeviceName).ok()
-    }
-
-    pub fn get_device_name(&self) -> String {
-        wide_str_from_slice_truncated(&self.info.DeviceName).to_string_lossy()
     }
 
     pub fn enumerate() -> impl Iterator<Item = Self> {
